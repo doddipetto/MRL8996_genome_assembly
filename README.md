@@ -38,8 +38,7 @@ MRL8996_Genome_Project/
 
 ## Pipeline notes (important for reproducibility)
 
-- **Mature sequences for structure prediction.** SignalP-cleaved (mature) sequences
-  are folded in `02_Effector_Prediction/04`. AMAPEC explicitly requires structures
+- **Mature sequences for structure prediction.** AMAPEC explicitly requires structures
   predicted from mature sequences; folding with the signal peptide distorts geometry
   and biases the antimicrobial-activity prediction.
 - **AMAPEC output path.** AMAPEC v1.0 writes `AMAPEC_Effectorome/prediction.csv`,
@@ -52,7 +51,7 @@ MRL8996_Genome_Project/
 
 ## Software
 
-Flye, Medaka (optional), BWA, samtools, Juicer, 3D-DNA, Juicebox; EDTA (bedtools); SignalP 6,
+Flye, BWA, samtools, Juicer, 3D-DNA, Juicebox; EDTA (via Docker); SignalP 6,
 EffectorP 3.0, DeepTMHMM (via BioLib); ColabFold / ESMFold; DaliLite v5, TM-align;
 AMAPEC; R (igraph, ggraph, ComplexHeatmap, circlize, tidyverse), Python
 (networkx, matplotlib, pandas).
