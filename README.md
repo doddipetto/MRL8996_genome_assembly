@@ -6,13 +6,10 @@ characterisation of its predicted effectorome.
 
 ## Overview
 
-<!-- Compute these from the FINAL assembly. DO NOT copy numbers from another
-     strain (e.g. FO12). Suggested: seqkit stats -a MRL8996_chromosome_level.fasta -->
-
 - **Assembly:** Oxford Nanopore long reads (Flye) + Hi-C scaffolding (Juicer / 3D-DNA)
-- **Total length:** `[CONFIRM]` Mb
-- **Chromosome-scale pseudomolecules:** `[CONFIRM]` (16 expected)
-- **Final effectorome:** `[CONFIRM]` proteins (SignalP ∩ EffectorP, transmembrane-filtered)
+- **Total length:** `52.32` Mb
+- **Chromosome-scale pseudomolecules:** `16`
+- **Final effectorome:** `513` proteins (SignalP ∩ EffectorP, transmembrane-filtered)
 - **Structural analyses:** all-vs-all TM-align + DALI, Louvain structural families, AMAPEC antimicrobial-activity prediction
 
 ## Repository structure
@@ -62,8 +59,7 @@ AMAPEC; R (igraph, ggraph, ComplexHeatmap, circlize, tidyverse), Python
 
 ## Citation
 
-> Doddi, A. *et al.* (2026). A chromosome-level genome assembly of
-> *Fusarium oxysporum* strain MRL8996. `[CONFIRM journal / DOI]`
+> Doddi, A.; Puebla Planas, G. *et al.* (2026). A near-complete genome assembly of *Fusarium oxysporum* keratitis  isolate MRL8996.
 
 Tool citations: Flye (Kolmogorov et al. 2019); Juicer (Durand et al. 2016);
 3D-DNA (Dudchenko et al. 2017); EDTA (Ou et al. 2019); SignalP 6.0 (Teufel et al. 2022); EffectorP 3.0
@@ -73,5 +69,5 @@ AMAPEC (Mesny & Thomma 2024, doi:10.1101/2024.01.04.574150).
 
 ## Data availability
 
-Final assembly: NCBI GenBank `[CONFIRM accession]`. Raw ONT and Hi-C reads:
-BioProject `[CONFIRM]`. Large sequence files are archived at NCBI, not in this repo.
+Final assembly: NCBI GenBank `GCA_009746015.2`. Raw ONT and Hi-C reads: SRX34109262 & SRX34109263
+BioProject `PRJNA554890`. Large sequence files are archived at NCBI, not in this repo.
