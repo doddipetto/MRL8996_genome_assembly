@@ -70,3 +70,26 @@ AMAPEC (Mesny & Thomma 2024, doi:10.1101/2024.01.04.574150).
 
 Final assembly: NCBI GenBank `GCA_009746015.2`. Raw ONT and Hi-C reads: SRX34109262 & SRX34109263
 BioProject `PRJNA554890`. Large sequence files are archived at NCBI, not in this repo.
+
+## 05_Revision_2026 - analyses added during revision
+
+Scripts written to answer the reviewers of the Scientific Data submission. They
+run in numerical order and are documented one by one in
+`05_Revision_2026/README.md`, which gives for each script its inputs, its
+outputs and the figure or table of the manuscript it produces. Paths inside the
+scripts are absolute to the analysis machine and have to be adapted.
+
+| Scripts | Analysis |
+|---|---|
+| 01-06 | Three-way comparison of the effector catalogues of MRL8996, Fol4287 and Fo47 (CD-HIT at 70% identity), the candidates unique to MRL8996 and their characterisation, and their structural comparison against the two reference strains |
+| 07 | Structural similarity network of the effector models including the unconnected nodes, so that the position of the unique candidates is visible |
+| 08 | Maximum-likelihood phylogeny of the Fusarium oxysporum species complex |
+| 09, 10, 19-22 | Per-chromosome content, repeat classes in the core and accessory compartments, effector genomic map and the composed effectorome figure |
+| 11, 13-18 | Hi-C contact map, StainedGlass self-identity and GC criterion used to call the candidate centromeric regions, and the circos and Hi-C figure panels |
+| 12, 23, 24 | Manuscript and response-letter documents |
+| 25, 26 | Assembly of the data deposition (Data File 1-12 and all source data) and the rebuilt supplementary-table workbook |
+
+The twelve large data tables previously distributed as manuscript files are
+deposited as Data File 1-12 in the figshare record of this study (DOI to be
+inserted on acceptance), together with the source data of every figure and
+table.
