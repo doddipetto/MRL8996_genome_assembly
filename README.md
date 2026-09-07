@@ -81,7 +81,7 @@ scripts are absolute to the analysis machine and have to be adapted.
 
 | Scripts | Analysis |
 |---|---|
-| 01-06 | Three-way comparison of the effector catalogues of MRL8996, Fol4287 and Fo47 (CD-HIT at 70% identity), the candidates unique to MRL8996 and their characterisation, and their structural comparison against the two reference strains |
+| 01-04 | Three-way comparison of the effector catalogues of MRL8996, Fol4287 and Fo47 (CD-HIT at 70% identity) at the level of sequence, the candidates unique to MRL8996, their characterisation, and their structural comparison within the MRL8996 catalogue |
 | 07 | Structural similarity network of the effector models including the unconnected nodes, so that the position of the unique candidates is visible |
 | 08 | Maximum-likelihood phylogeny of the Fusarium oxysporum species complex |
 | 09, 10, 19-22 | Per-chromosome content, repeat classes in the core and accessory compartments, effector genomic map and the composed effectorome figure |

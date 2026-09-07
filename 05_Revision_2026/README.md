@@ -16,10 +16,9 @@ each file under a `# --- paths ---` block if you need to move things.
 
 | Scripts | Environment | Needs |
 |---|---|---|
-| 01-07, 09-12 | `python` (base conda) | pandas, matplotlib, numpy, biopython; CD-HIT and TM-align on `PATH` for 01 and 04/05 |
+| 01-04, 07, 09-12 | `python` (base conda) | pandas, matplotlib, numpy, biopython; CD-HIT and TM-align on `PATH` for 01 and 04 |
 | 08 | `chr10-phylo` | blast, mafft, trimal, iqtree, pandas, matplotlib, biopython |
 | 11a | `python` | `hicstraw` (pip), reads `mrl8996-hic.hic` directly |
-| `run_colabfold_Fo47.sh` | local GPU, ColabFold install | not yet run |
 
 Activate with `conda activate chr10-phylo` for script 08, `conda activate
 base` for the rest.
@@ -32,8 +31,6 @@ base` for the rest.
 | 02 | `02_venn_effectorome.py` | `figures/Venn_Effectorome_MRL8996.{pdf,png}` | done |
 | 03 | `03_characterise_unique_effectors.py` | `tables/Table_MRL8996_unique_effectors.tsv`, `tables/unique_effector_enrichment.tsv`, `figures/Fig_unique_effector_distribution.{pdf,png}` | done |
 | 04 | `04_structural_homologs_within_MRL8996.py` | `tables/unique_vs_MRL_structural_homologs.tsv`, `unique_vs_MRL_structural_summary.tsv`, `figures/Fig_unique_intra_structural.{pdf,png}` | done |
-| 05 | `05_cross_strain_structural_Fol4287.py` | `results/tmalign_MRL8996unique_vs_Fol4287.tsv`, `tables/cross_strain_best_hits.tsv`, `figures/Fig_cross_strain_structural.{pdf,png}` | done |
-| 06 | `06_prepare_Fo47_folding.py` + `run_colabfold_Fo47.sh` | `data/Fo47_effectors_for_colabfold.fasta`, `data/Fo47_header_map.tsv` | **fasta prepared, folding NOT run** |
 | 07 | `07_structural_network_with_singletons.py` (`--panel` for the Figure 4 version) | `tables/network_singletons_nodes.tsv`, `network_family_composition.tsv`, `figures/Fig_structural_network_singletons.{pdf,png}` | done |
 | 08 | `08_FOSC_phylogeny.py` | `results/phylogeny/FOSC_ML.*`, `tables/Table_FOSC_phylogeny_taxa.tsv`, `figures/Figure_FOSC_phylogeny.{pdf,png}`, `logs/08_phylogeny.log` | done |
 | 09 | `09_accessory_chromosome_content.py` | `tables/Table_per_chromosome_content.tsv`, `Table_TE_classes_core_vs_accessory.tsv`, `effector_density_by_compartment.tsv`, `assembly_auN.tsv`, `figures/Fig_core_vs_accessory_content.{pdf,png}` | done |
@@ -47,9 +44,6 @@ base` for the rest.
 - `11a_hic_contact_map_centromeres.py --binsize 50000` sets the contact-map
   bin size (default 50 kb). The `.hic` extraction is the slow part of this
   script; a coarser bin size runs faster.
-- `05_cross_strain_structural_Fol4287.py --threads 8 --plot-only`: `--plot-only`
-  re-summarises the existing TM-align pair table without repeating the
-  61,000 alignments; `--threads` sets the alignment parallelism.
 - `08_FOSC_phylogeny.py --threads 8` sets BLAST/MAFFT/IQ-TREE threads.
 - `11b_reexport_main_figures.py --dpi 600` sets the raster resolution;
   default is 600.
@@ -59,30 +53,6 @@ base` for the rest.
   `manuscript/ms_v2.0_revised.md` or `response_to_comments.md`; it
   rebuilds both Word files and re-reads the tables from `tables/`.
 
-## The one thing still pending: Fo47 structural models
-
-Script 06 wrote `data/Fo47_effectors_for_colabfold.fasta` (the Fo47
-effector candidates with no existing model) and a header map. To fold
-them on the local GPU:
-
-```bash
-cd /home/usuario/nvme_data/home/usuario/adoddi/MRL8996_genome_paper/Revision_2026
-bash scripts/run_colabfold_Fo47.sh
-``` Models are written to
-`results/colabfold_Fo47/` (3 models per sequence, rank_001 retained), and
-`COLABFOLD_BIN` at the top of the script currently points at
-`/home/usuario/localcolabfold/.pixi/envs/default/bin/colabfold_batch` —
-check that path before running.
-
-Extending the cross-strain comparison to Fo47 afterwards needs a small
-edit to script 05, not a flag: add the Fo47 model directory to its
-`REF_SETS` block at the top and re-run it. The manuscript currently states in Methods that the
-comparison is restricted to Fol4287 because no equivalent Fo47 models
-were available, so that sentence would need updating too.
-
-This run is not required for the revision as submitted — every figure,
-table and number in `ms_v2.0_revised.md` comes from the scripts marked
-"done" above.
 
 ## 14-15 (centromeres, re-run 2026-09-03)
 
@@ -110,3 +80,13 @@ Table 3 in the docx builder now reads `Table_centromeres_stainedglass.tsv`; the
 old Hi-C table becomes Supplementary Table S4.
 | 25 | `25_build_deposition_package.py` | assembles `deposition/` (the twelve large data tables as Data File 1-12 plus all source data), writes `README.md` and a checksummed `MANIFEST.tsv` | `deposition/` |
 | 26 | `26_build_supplementary_workbook.py` | rebuilds the supplementary-table workbook with only the three small tables that stay with the manuscript | `tables/Supplementary_Tables_MRL8996_revised.xlsx` |
+
+## Withdrawn analyses
+
+The structural comparison of the isolate-specific candidates against the
+Fol4287 and Fo47 catalogues (former scripts 05 and 06 and their outputs) has
+been withdrawn: no structural models were produced for those two strains as
+part of this study. The files are kept, unused, in
+`withdrawn_Fo47_Fol4287_structural/`. The structural comparison reported in the
+manuscript is the one within the MRL8996 catalogue (script 04) and the
+three-strain comparison is at the level of sequence only (scripts 01-03).
