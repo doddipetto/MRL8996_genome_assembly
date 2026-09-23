@@ -54,32 +54,42 @@ base` for the rest.
   rebuilds both Word files and re-reads the tables from `tables/`.
 
 
-## 14-15 (centromeres, re-run 2026-09-03)
+## Scripts 13-26
 
-| # | Script | Env | Status |
+### Centromeres (13-17)
+
+| # | Script | Env | Output |
 |---|--------|-----|--------|
-| 13 | `13_stainedglass_percontig.py` | `sglass` | done - per-chromosome StainedGlass, 16 bed.gz in `results/stainedglass/` |
-| 14 | `14_call_centromeres_stainedglass.py` | `sglass` | done - `tables/Table_centromeres_stainedglass.tsv`, `results/centromeres_stainedglass.bed`, `figures/Fig_stainedglass_identity_16chr.pdf/.png` |
-| 15 | `15_circos_with_centromeres.R` | `r` (circlize) | done - `figures/Figure_1B_circos_centromeres.pdf` |
+| 13 | `13_stainedglass_percontig.py` | `sglass` | per-chromosome StainedGlass self-identity, `results/stainedglass/*.bed.gz` (16 files) |
+| 14 | `14_call_centromeres_stainedglass.py` | `sglass` | first calls from the self-identity signal, compared with the Hi-C blocks of script 11a: `tables/Table_centromeres_stainedglass.tsv`, `results/centromeres_stainedglass.bed`, `figures/Fig_stainedglass_identity_16chr.{pdf,png}`. Superseded by script 17; kept for comparison |
+| 17 | `17_centromeres_gc_criterion.py` | `python` | final calls: GC trough of each chromosome supported by a diverged identity band: `tables/Table_centromeres_gc.tsv`, `results/centromeres_gc.bed`, `tables/Table_identity_bands_per_chromosome.tsv`, `figures/Fig_centromere_identity_gc_profiles.{pdf,png}` |
+| 15 | `15_circos_with_centromeres.R` | `r` (circlize) | circos plot with the script-17 centromeres: `figures/Figure_1B_circos_centromeres.pdf` |
+| 16 | `16_label_hic_panelA.py` | `python` (pymupdf) | the original Juicebox export of the Hi-C map, cropped, with Chr01-Chr16 labels: `figures/Figure_1A_HiC_labelled.pdf` |
 
-| 16 | `16_label_hic_panelA.py` | `python` (pymupdf) | done - `figures/Figure_1A_HiC_labelled.pdf`, Chr01-Chr16 measured from the blue boxes |
-| 17 | `17_centromeres_gc_criterion.py` | `python` | done - final centromere calls from GC minima with identity support; supersedes script 14. Writes `tables/Table_centromeres_gc.tsv`, `results/centromeres_gc.bed`, `tables/Table_identity_bands_per_chromosome.tsv`, `figures/Fig_centromere_identity_gc_profiles.*`. Run before 15 and 11b |
-| 18 | `18_supp_image1_tapestry_legend.py` | `python` | done - adds the read-depth key, telomere key, chromosome names and axis title to the tapestry contig plot (R2.21); depth analysis behind the legend text is in results/coverage (samtools bedcov on the tapestry BAM) -> figures/Supplementary_Image_1_tapestry.{png,pdf}, tables/Table_S5_* |
-| 19 | `19_te_table_integrated_classes.py` | `python` | done - rebuilds Table 2 on the integrated EDTA + DeepTE classification, pooled to class/superfamily, core vs accessory bp and %, subtotals and non-redundant totals in-table (R2.20) -> tables/Table_TE_classes_core_vs_accessory.tsv |
-| 20 | `20_effector_map_plus_venn.py` | `python` | done - two-panel figure: author's linear effector map (panel a, placed as vector, not redrawn) + CD-HIT pan-effectorome Venn (panel b) -> figures/Figure_effector_map_and_venn.pdf/.png |
-| 21 | `21_effector_map_unique.R` | `r` | done - author's linear effector map with the 122 modelled MRL8996-unique effectors marked (black triangles); geometry/theme copied verbatim from plot_map_effector_position.R -> figures/MRL8996_Linear_Effector_Map_unique.pdf |
-| 22 | `22_figure4_recompose_network.py` | `python` | done - Figure 4 rebuilt: panels A and C clipped from `Figure_1_Master_Effectorome.pdf` unchanged, panel B replaced by the singleton-retaining network (`07 --panel`) -> `figures/Figure_4_Effectorome_recomposed.{pdf,png}`; `11b` now re-exports Figure 4 from it |
-| 23 | `23_patch_v20_highlighted.py` | patches the author v2.0 docx in place with the corrections still missing, marked in orange | `MRL8996_2026_v2.1_highlighted.docx` |
-| 24 | `24_build_response_letter.py` | point-by-point response letter in the FO12 Scientific Data style | `Response_to_reviewers_MRL8996_SciData.docx` |
+Run order: 11a -> 13 -> 14 -> 17 -> 15 -> 16 -> 11b.
+Figure 1A is the labelled original Juicebox export from script 16; the map
+re-rendered by script 11a is no longer used in Figure 1, but 11a still
+provides `tables/Table_centromeric_interaction_blocks.tsv` (cis/trans Hi-C
+signals per chromosome), which is Supplementary Table 1.
 
-Run order: 13 -> 14 -> 15 -> 16 -> `11b_reexport_main_figures.py` -> `12_build_manuscript_docx.py`.
-Figure 1 panel A is now the cropped original Juicebox export with chromosome
-labels added by script 16 (`figures/Figure_1A_HiC_labelled.pdf`) rather than the re-rendered map
-from script 11a; script 11a is retained but no longer feeds Figure 1.
-Table 3 in the docx builder now reads `Table_centromeres_stainedglass.tsv`; the
-old Hi-C table becomes Supplementary Table S4.
-| 25 | `25_build_deposition_package.py` | assembles `deposition/` (the twelve large data tables as Data File 1-12 plus all source data), writes `README.md` and a checksummed `MANIFEST.tsv` | `deposition/` |
-| 26 | `26_build_supplementary_workbook.py` | rebuilds the supplementary-table workbook with only the three small tables that stay with the manuscript | `tables/Supplementary_Tables_MRL8996_revised.xlsx` |
+### Figures and tables (18-22)
+
+| # | Script | Env | Output |
+|---|--------|-----|--------|
+| 18 | `18_supp_image1_tapestry_legend.py` | `python` | Supplementary Image 1 with read-depth key, telomere key, chromosome names and axis title; depth from `samtools bedcov` on the tapestry BAM: `figures/Supplementary_Image_1_tapestry.{pdf,png}`, `tables/Table_S5_read_depth_10kb.tsv` |
+| 19 | `19_te_table_integrated_classes.py` | `python` | Table 2 on the integrated EDTA + DeepTE classification, core vs accessory: `tables/Table_TE_classes_core_vs_accessory.tsv` |
+| 20 | `20_effector_map_plus_venn.py` | `python` | the authors' linear effector map (placed as vector) with the three-strain Venn diagram: `figures/Figure_effector_map_and_venn.{pdf,png}` |
+| 21 | `21_effector_map_unique.R` | `r` | the authors' linear effector map with the 122 modelled MRL8996-unique effectors marked: `figures/MRL8996_Linear_Effector_Map_unique.pdf` |
+| 22 | `22_figure4_recompose_network.py` | `python` | Figure 4 with panels A and C from `Figure_1_Master_Effectorome.pdf` unchanged and panel B replaced by the network of script 07 (`--panel`): `figures/Figure_4_Effectorome_recomposed.{pdf,png}` |
+
+### Manuscript, letter and data deposition (23-26)
+
+| # | Script | Env | Output |
+|---|--------|-----|--------|
+| 23 | `23_patch_v20_highlighted.py` | `python` | the authors' v2.0 manuscript with the revision edits in orange: `manuscript/MRL8996_2026_v2.1_highlighted.docx` |
+| 24 | `24_build_response_letter.py` | `python` | point-by-point response letter: `manuscript/Response_to_reviewers_MRL8996_SciData.docx` |
+| 25 | `25_build_deposition_package.py` | `python` | `deposition/`: Data File 1-12 and all source data, with `README.md` and a checksummed `MANIFEST.tsv` |
+| 26 | `26_build_supplementary_workbook.py` | `python` | `tables/Supplementary_Tables_MRL8996_revised.xlsx` (Supplementary Tables 1-3) |
 
 ## Withdrawn analyses
 
