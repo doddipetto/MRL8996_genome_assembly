@@ -93,3 +93,5 @@ The twelve large data tables previously distributed as manuscript files are
 deposited as Data File 1-12 in the figshare record of this study (DOI to be
 inserted on acceptance), together with the source data of every figure and
 table.
+
+The data tables themselves, as Excel files, are in `05_Revision_2026/Data_tables/`: Data File 1-12 (the twelve tables no longer distributed with the manuscript) and `Structural_network_MRL8996.xlsx`, the latest structural network with the closest known fold of each family and the proteins unique to MRL8996.
