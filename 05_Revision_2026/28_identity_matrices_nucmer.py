@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-27_identity_matrices_nucmer.py
+28_identity_matrices_nucmer.py
 ==============================
 Recomputes Data Files 2-4 (chromosome-by-chromosome coverage and identity of
 MRL8996 against Fol4287, of Fo47 against MRL8996, and of MRL8996 against

@@ -81,7 +81,7 @@ FILES = [
     ("02_synteny/Matrix_MRL8996_vs_Fol4287_nucmer_pairs.tsv",
      REV / "tables" / "identity_nucmer" / "Matrix_MRL8996_vs_Fol4287_nucmer_pairs.tsv", False,
      "Per chromosome pair, MRL8996 vs Fol4287 (NUCmer): coverage, 1-to-1 aligned bp "
-     "and length-weighted identity; the source of Data File 2 (script 27)."),
+     "and length-weighted identity; the source of Data File 2 (script 28)."),
     ("02_synteny/Matrix_Fo47_vs_MRL8996_nucmer_pairs.tsv",
      REV / "tables" / "identity_nucmer" / "Matrix_Fo47_vs_MRL8996_nucmer_pairs.tsv", False,
      "Per chromosome pair, Fo47 vs MRL8996 (NUCmer); the source of Data File 3."),
@@ -383,7 +383,7 @@ def export_supplementary(rows):
     dest = OUT / "00_data_files_cited_in_manuscript"
     dest.mkdir(parents=True, exist_ok=True)
     for n, slug, do_gzip, desc in SHEETS:
-        if n in (2, 3, 4):                     # recomputed with NUCmer, script 27
+        if n in (2, 3, 4):                     # recomputed with NUCmer, script 28
             src = REV / "tables" / "identity_nucmer" / ("Data_File_%02d_%s.tsv" % (n, slug))
             target = dest / src.name
             shutil.copy2(src, target)

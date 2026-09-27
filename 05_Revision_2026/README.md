@@ -88,9 +88,10 @@ signals per chromosome), which is Supplementary Table 1.
 |---|--------|-----|--------|
 | 23 | `23_patch_v20_highlighted.py` | `python` | the authors' v2.0 manuscript with the revision edits in orange: `manuscript/MRL8996_2026_v2.1_highlighted.docx` |
 | 24 | `24_build_response_letter.py` | `python` | point-by-point response letter: `manuscript/Response_to_reviewers_MRL8996_SciData.docx` |
-| 25 | `25_build_deposition_package.py` | `python` | `deposition/`: Data File 1-12 and all source data, with `README.md` and a checksummed `MANIFEST.tsv` |
+| 25 | `25_build_deposition_package.py` | `python` | `deposition/`: Data File 1-12 and all source data, with `README.md` and a checksummed `MANIFEST.tsv` (Data Files 2-4 are read from the output of 28; run 28 before 25 and 27 after it) |
 | 26 | `26_build_supplementary_workbook.py` | `python` | `tables/Supplementary_Tables_MRL8996_revised.xlsx` (Supplementary Tables 1-3) |
-| 27 | `27_identity_matrices_nucmer.py` | `python` + MUMmer 3.1 on `PATH` | Data Files 2-4 recomputed from NUCmer: coverage from many-to-many alignments, identity as the dnadiff AvgIdentity of the 1-to-1 alignments; replaces the minimap2-PAF ratio used before, which under-estimated identity and swapped the MRL8996 Chr03/Chr04 labels: `tables/identity_nucmer/` |
+| 27 | `27_add_missing_annotation_files.py` | `python` | completes `deposition/`: regenerates `03_repeats/MRL8996_simple_repeats.bed` from the TRF output and adds the TE and simple-repeat 20-kb density tracks; run after every run of 25 |
+| 28 | `28_identity_matrices_nucmer.py` | `python` + MUMmer 3.1 on `PATH` | Data Files 2-4 recomputed from NUCmer: coverage from many-to-many alignments, identity as the dnadiff AvgIdentity of the 1-to-1 alignments; replaces the minimap2-PAF ratio used before, which under-estimated identity and swapped the MRL8996 Chr03/Chr04 labels: `tables/identity_nucmer/` |
 
 ## Withdrawn analyses
 
