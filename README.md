@@ -71,27 +71,6 @@ AMAPEC (Mesny & Thomma 2024, doi:10.1101/2024.01.04.574150).
 Final assembly: NCBI GenBank `GCA_009746015.2`. Raw ONT and Hi-C reads: SRX34109262 & SRX34109263
 BioProject `PRJNA554890`. Large sequence files are archived at NCBI, not in this repo.
 
-## 05_Revision_2026 - analyses added during revision
+## 05_Revision_2026 - revision
 
-Scripts written to answer the reviewers of the Scientific Data submission. They
-run in numerical order and are documented one by one in
-`05_Revision_2026/README.md`, which gives for each script its inputs, its
-outputs and the figure or table of the manuscript it produces. Paths inside the
-scripts are absolute to the analysis machine and have to be adapted.
-
-| Scripts | Analysis |
-|---|---|
-| 01-04 | Three-way comparison of the effector catalogues of MRL8996, Fol4287 and Fo47 (CD-HIT at 70% identity) at the level of sequence, the candidates unique to MRL8996, their characterisation, and their structural comparison within the MRL8996 catalogue |
-| 07 | Structural similarity network of the effector models including the unconnected nodes, so that the position of the unique candidates is visible |
-| 08 | Maximum-likelihood phylogeny of the Fusarium oxysporum species complex |
-| 09, 10, 19-22 | Per-chromosome content, repeat classes in the core and accessory compartments, effector genomic map and the composed effectorome figure |
-| 11, 13-18 | Hi-C contact map, StainedGlass self-identity and GC criterion used to call the candidate centromeric regions, and the circos and Hi-C figure panels |
-| 12, 23, 24 | Manuscript and response-letter documents |
-| 25, 26 | Assembly of the data deposition (Data File 1-12 and all source data) and the rebuilt supplementary-table workbook |
-
-The twelve large data tables previously distributed as manuscript files are
-deposited as Data File 1-12 in the figshare record of this study (DOI to be
-inserted on acceptance), together with the source data of every figure and
-table.
-
-The data tables themselves, as Excel files, are in `05_Revision_2026/Data_tables/`: Data File 1-12 (the twelve tables no longer distributed with the manuscript) and `Structural_network_MRL8996.xlsx`, the latest structural network with the closest known fold of each family and the proteins unique to MRL8996.
+`05_Revision_2026/Data_tables/` holds the data tables as Excel files (Data File 1-12 and the structural network table), and `05_Revision_2026/` the scripts that produce the figures updated during the revision (Figures 1, 4 and 5 and Supplementary Images 1 and 4). See `05_Revision_2026/README.md`.
