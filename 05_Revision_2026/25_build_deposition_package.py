@@ -78,23 +78,24 @@ FILES = [
      "sequence accessions."),
 
     # ------------------------------------------------------------- 02 synteny
-    ("02_synteny/synteny_matrix_MRL8996_vs_Fol4287.csv",
-     HIC / "06_circos_synteny" / "Matrix_MRL_vs_Fol4287.csv", False,
-     "Matrix of aligned sequence (bp) between each MRL8996 "
-     "pseudomolecule and each Fol4287 chromosome."),
-    ("02_synteny/synteny_matrix_MRL8996_vs_Fo47.csv",
-     HIC / "06_circos_synteny" / "Matrix_Fo47_vs_MRL8996.csv", False,
-     "Matrix of aligned sequence (bp) between each MRL8996 "
-     "pseudomolecule and each Fo47 chromosome."),
-    ("02_synteny/self_alignment_matrix.csv",
-     HIC / "06_circos_synteny" / "Matrix_MRL_Self.csv", False,
-     "Matrix of aligned sequence (bp) between MRL8996 "
-     "pseudomolecules in the self-alignment (segmental duplications, "
-     "Figure 3B)."),
+    ("02_synteny/Matrix_MRL8996_vs_Fol4287_nucmer_pairs.tsv",
+     REV / "tables" / "identity_nucmer" / "Matrix_MRL8996_vs_Fol4287_nucmer_pairs.tsv", False,
+     "Per chromosome pair, MRL8996 vs Fol4287 (NUCmer): coverage, 1-to-1 aligned bp "
+     "and length-weighted identity; the source of Data File 2 (script 27)."),
+    ("02_synteny/Matrix_Fo47_vs_MRL8996_nucmer_pairs.tsv",
+     REV / "tables" / "identity_nucmer" / "Matrix_Fo47_vs_MRL8996_nucmer_pairs.tsv", False,
+     "Per chromosome pair, Fo47 vs MRL8996 (NUCmer); the source of Data File 3."),
+    ("02_synteny/Matrix_MRL8996_self_nucmer_pairs.tsv",
+     REV / "tables" / "identity_nucmer" / "Matrix_MRL8996_self_nucmer_pairs.tsv", False,
+     "Per chromosome pair, MRL8996 against itself (NUCmer, each chromosome "
+     "against the other 15); the source of Data File 4."),
+    ("02_synteny/genome_wide_avg_identity.tsv",
+     REV / "tables" / "identity_nucmer" / "genome_wide_avg_identity.tsv", False,
+     "Genome-wide 1-to-1 AvgIdentity (dnadiff definition) of the three comparisons."),
     ("02_synteny/FO47_vs_MRL8996.paf",
      HIC / "06_circos_synteny" / "FO47_vs_MRL8996.paf", False,
-     "minimap2 asm20 alignment of Fo47 against MRL8996, the source of Data "
-     "File 3 and of the Figure 3A ribbons."),
+     "minimap2 asm20 alignment of Fo47 against MRL8996, the source of the "
+     "Figure 3A ribbons."),
     ("02_synteny/FO47_vs_FOL4287.paf",
      HIC / "06_circos_synteny" / "FO47_vs_FOL4287.paf", False,
      "minimap2 asm20 alignment of Fo47 against Fol4287."),
@@ -225,24 +226,9 @@ FILES = [
     ("05_three_strain_comparison/unique_vs_MRL8996_structural_summary.tsv",
      REV / "tables" / "unique_vs_MRL_structural_summary.tsv", False,
      "Summary of the same comparison at several TM-score thresholds."),
-    ("05_three_strain_comparison/unique_vs_Fol4287_TM_scores.tsv.gz",
-     REV / "results" / "tmalign_MRL8996unique_vs_Fol4287.tsv", True,
-     "All TM-align comparisons between the isolate-specific candidates and the "
-     "Fol4287 models."),
-    ("05_three_strain_comparison/cross_strain_best_hits.tsv",
-     REV / "tables" / "cross_strain_best_hits.tsv", False,
-     "Best cross-strain structural hit of every MRL8996 candidate."),
     ("05_three_strain_comparison/three_strain_summary.tsv",
      REV / "tables" / "Table5_three_strain.tsv", False,
      "Catalogue sizes and clustering summary of the three strains."),
-    ("05_three_strain_comparison/Fo47_effectors_for_colabfold.fasta",
-     REV / "data" / "Fo47_effectors_for_colabfold.fasta", False,
-     "Fo47 effector sequences submitted to ColabFold for the cross-strain "
-     "structural comparison."),
-    ("05_three_strain_comparison/Fo47_header_map.tsv",
-     REV / "data" / "Fo47_header_map.tsv", False,
-     "Mapping between the shortened ColabFold headers and the original Fo47 "
-     "accessions."),
 
     # --------------------------------------------------------- 06 centromeres
     ("06_centromeres/centromeric_interaction_blocks.tsv",
@@ -323,12 +309,14 @@ SHEETS = [
      "Additional assembly statistics of MRL8996 (scaffold counts, length "
      "distribution, GC, N content)."),
     (2, "identity_matrix_MRL8996_vs_Fol4287", False,
-     "Matrix of identity between MRL8996 and Fol4287, chromosome by "
-     "chromosome."),
+     "Coverage and nucleotide identity (NUCmer, dnadiff AvgIdentity) between "
+     "MRL8996 and Fol4287, chromosome by chromosome."),
     (3, "identity_matrix_MRL8996_vs_Fo47", False,
-     "Matrix of identity between MRL8996 and Fo47, chromosome by chromosome."),
+     "Coverage and nucleotide identity (NUCmer) between Fo47 and MRL8996, "
+     "chromosome by chromosome."),
     (4, "identity_matrix_MRL8996_self", False,
-     "Matrix of identity of MRL8996 against itself (segmental duplications)."),
+     "Coverage and nucleotide identity (NUCmer) between MRL8996 chromosomes "
+     "(segmental duplications)."),
     (5, "structural_family_distribution", False,
      "Distribution of the structural protein families identified from the "
      "TM-score dendrogram, with the number of members per family."),
@@ -395,6 +383,13 @@ def export_supplementary(rows):
     dest = OUT / "00_data_files_cited_in_manuscript"
     dest.mkdir(parents=True, exist_ok=True)
     for n, slug, do_gzip, desc in SHEETS:
+        if n in (2, 3, 4):                     # recomputed with NUCmer, script 27
+            src = REV / "tables" / "identity_nucmer" / ("Data_File_%02d_%s.tsv" % (n, slug))
+            target = dest / src.name
+            shutil.copy2(src, target)
+            rows.append((str(target.relative_to(OUT)), target.stat().st_size,
+                         md5(target), "Data File %d. %s" % (n, desc)))
+            continue
         ws = wb["Supplementary Table %d" % n]
         name = "Data_File_%02d_%s.tsv" % (n, slug)
         target = dest / (name + ".gz" if do_gzip else name)
@@ -488,7 +483,7 @@ The twelve tables previously supplied as manuscript files are named
 | `02_synteny` | Chromosome-by-chromosome alignment matrices against Fol4287 and Fo47 and for the self-alignment, and the underlying minimap2 PAF files |
 | `03_repeats` | EDTA transposable-element annotation, non-redundant TE library, DeepTE classification, per-class occupancy in the core and accessory compartments, repeat BED files |
 | `04_effectors` | Effector catalogue with all per-candidate scores, SignalP and EffectorP predictions for the whole proteome, all-versus-all TM-score matrix, structural family assignment, structural-similarity network (node table and GML) |
-| `05_three_strain_comparison` | CD-HIT clustering of the MRL8996, Fol4287 and Fo47 catalogues, the seven-region counts of the three-way comparison, the isolate-specific candidates and their structural comparisons |
+| `05_three_strain_comparison` | CD-HIT clustering of the MRL8996, Fol4287 and Fo47 catalogues, the seven-region counts of the three-way comparison, the isolate-specific candidates, and their structural comparison within the MRL8996 catalogue |
 | `06_centromeres` | Candidate centromeric regions with their supporting signals, GC profiles, StainedGlass identity bands |
 | `07_technical_validation` | BUSCO, Merqury and QUAST summaries, read depth in 10-kb windows, auN, Hi-C contact matrix (.hic) |
 | `08_phylogeny` | Concatenated alignment and maximum-likelihood trees of the FOSC strains |

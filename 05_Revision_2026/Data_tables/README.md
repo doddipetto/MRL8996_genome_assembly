@@ -7,9 +7,9 @@ they are cited in the manuscript as Data File 1 to Data File 12. The same tables
 | File | Content |
 |---|---|
 | `Data_File_01_additional_assembly_statistics.xlsx` | Data File 1. Additional assembly statistics of MRL8996 |
-| `Data_File_02_identity_matrix_MRL8996_vs_Fol4287.xlsx` | Data File 2. Matrix of identity between MRL8996 and Fol4287 |
-| `Data_File_03_identity_matrix_MRL8996_vs_Fo47.xlsx` | Data File 3. Matrix of identity between MRL8996 and Fo47 |
-| `Data_File_04_identity_matrix_MRL8996_self.xlsx` | Data File 4. Matrix of identity of MRL8996 against itself |
+| `Data_File_02_identity_matrix_MRL8996_vs_Fol4287.xlsx` | Data File 2. Coverage and nucleotide identity between MRL8996 and Fol4287 chromosomes (NUCmer; identity = dnadiff AvgIdentity of the 1-to-1 alignments) |
+| `Data_File_03_identity_matrix_MRL8996_vs_Fo47.xlsx` | Data File 3. Coverage and nucleotide identity between Fo47 and MRL8996 chromosomes (NUCmer) |
+| `Data_File_04_identity_matrix_MRL8996_self.xlsx` | Data File 4. Coverage and nucleotide identity between MRL8996 chromosomes (NUCmer, each against the other 15) |
 | `Data_File_05_structural_family_distribution.xlsx` | Data File 5. Distribution of the structural protein families (TM-score) and number of members |
 | `Data_File_06_structural_network_nodes.xlsx` | Data File 6. Structural network nodes of the MRL8996 effector structures (submitted version) |
 | `Data_File_07_repeat_statistics_per_chromosome.xlsx` | Data File 7. Repeat statistics per chromosome |

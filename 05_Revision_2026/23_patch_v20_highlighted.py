@@ -252,12 +252,21 @@ def main():
         "antimicrobial; in both respects they do not differ in proportion from the shared "
         "candidates. Sequence-level uniqueness does not imply structural novelty: of the 122 "
         "sequence-unique candidates with a confident model, 90 have a structural counterpart "
-        "elsewhere in the MRL8996 catalogue at a TM-score of at least 0.5, and 90 have one "
-        "among the 500 Fol4287 models, leaving 26 candidates with no structural counterpart "
-        "in either set. In the structural network (Figure 5B), 44 of these 122 candidates are "
+        "elsewhere in the MRL8996 catalogue at a TM-score of at least 0.5 and 119 at a "
+        "TM-score of at least 0.4, so only 32 lack a counterpart at the stricter "
+        "threshold. In the structural network (Figure 5B), 44 of these 122 candidates are "
         "among the 131 nodes that share no edge above the threshold, and the family most "
         "enriched in isolate-specific members is the KP4-like family (Family 4, 13 of 25 "
         "members).")
+
+    # ------------------------------------------------ Data Files 2-4 (NUCmer)
+    append(para(doc, "To identify segmental duplications within the MRL8996 genome"),
+           " The chromosome-by-chromosome coverage and nucleotide identity reported in "
+           "Data Files 2-4 were computed from NUCmer (MUMmer v3.1) alignments of each "
+           "query chromosome, identity being the alignment-length-weighted mean identity "
+           "of the 1-to-1 alignments (the dnadiff AvgIdentity); genome-wide, MRL8996 and "
+           "Fol4287 share 97.7% identity over 43.2 Mb of 1-to-1 alignment, and Fo47 and "
+           "MRL8996 97.7% over 42.7 Mb.")
 
     # ------------------------------------------------------------------- E3
     append(para(doc, "The MRL8996 strain used in this study was originally isolated"),
@@ -348,7 +357,7 @@ def main():
            "structural-family and AMAPEC assignments, the all-versus-all TM-score matrix "
            "and the structural-similarity network; the CD-HIT clustering of the MRL8996, "
            "Fol4287 and Fo47 catalogues with the isolate-specific candidates and their "
-           "structural comparisons; the chromosome-by-chromosome alignment matrices and "
+           "structural comparison within the MRL8996 catalogue; the chromosome-by-chromosome alignment matrices and "
            "the minimap2 alignments behind them; the candidate centromeric regions with "
            "their supporting signals; the per-chromosome content table; the biosynthetic "
            "gene cluster coordinates; the read-depth windows, BUSCO, Merqury and QUAST "

@@ -90,6 +90,7 @@ signals per chromosome), which is Supplementary Table 1.
 | 24 | `24_build_response_letter.py` | `python` | point-by-point response letter: `manuscript/Response_to_reviewers_MRL8996_SciData.docx` |
 | 25 | `25_build_deposition_package.py` | `python` | `deposition/`: Data File 1-12 and all source data, with `README.md` and a checksummed `MANIFEST.tsv` |
 | 26 | `26_build_supplementary_workbook.py` | `python` | `tables/Supplementary_Tables_MRL8996_revised.xlsx` (Supplementary Tables 1-3) |
+| 27 | `27_identity_matrices_nucmer.py` | `python` + MUMmer 3.1 on `PATH` | Data Files 2-4 recomputed from NUCmer: coverage from many-to-many alignments, identity as the dnadiff AvgIdentity of the 1-to-1 alignments; replaces the minimap2-PAF ratio used before, which under-estimated identity and swapped the MRL8996 Chr03/Chr04 labels: `tables/identity_nucmer/` |
 
 ## Withdrawn analyses
 
