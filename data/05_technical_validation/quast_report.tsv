@@ -1,0 +1,23 @@
+Assembly	FoxMRL8996_AssemblyScaffolds	MRL8996_chromosome_level	MRL8996_chromosome_level_broken
+# contigs (>= 0 bp)	250	16	19
+# contigs (>= 1000 bp)	250	16	19
+# contigs (>= 5000 bp)	197	16	19
+# contigs (>= 10000 bp)	161	16	19
+# contigs (>= 25000 bp)	116	16	19
+# contigs (>= 50000 bp)	82	16	19
+Total length (>= 0 bp)	50071586	52321866	52321566
+Total length (>= 1000 bp)	50071586	52321866	52321566
+Total length (>= 5000 bp)	49930981	52321866	52321566
+Total length (>= 10000 bp)	49667308	52321866	52321566
+Total length (>= 25000 bp)	48911547	52321866	52321566
+Total length (>= 50000 bp)	47771834	52321866	52321566
+# contigs	250	16	19
+Largest contig	4647901	6391895	6391895
+Total length	50071586	52321866	52321566
+GC (%)	47.60	47.66	47.66
+N50	1727337	4819956	4819956
+N90	129585	1818122	1818122
+auN	1874049.4	4154107.4	4124482.1
+L50	10	5	5
+L90	46	12	12
+# N's per 100 kbp	0.04	0.57	0.00

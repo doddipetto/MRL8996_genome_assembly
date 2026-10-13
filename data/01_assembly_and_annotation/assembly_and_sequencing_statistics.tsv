@@ -1,0 +1,22 @@
+Category	Metric	MRL8996 v1.0 (JGI)	MRL8996 chromosome-level (this study)
+Sequencing	Nanopore data (Gb)	-	4.56
+Sequencing	Nanopore coverage (x)	-	87
+Sequencing	Hi-C data (Gb)	-	20.39
+Sequencing	Hi-C read pairs	-	67,964,897
+Sequencing	Hi-C coverage (x)	-	390
+Sequencing	Valid unique Hi-C contacts	-	45,094,709
+Assembly	Number of sequences	250	16
+Assembly	Assembly size (bp)	50,071,586	52,321,866
+Assembly	N50 (bp)	1,727,337	4,819,956
+Assembly	N90 (bp)	129,585	1,818,122
+Assembly	auN (bp)	1,874,049	4,154,107
+Assembly	L50	10	5
+Assembly	L90	46	12
+Assembly	Largest sequence (bp)	4,647,901	6,391,895
+Assembly	GC content (%)	47.60	47.66
+Assembly	Ns per 100 kbp	0.04	0.57
+Assembly	Gaps	-	3
+Assembly	Telomeric ends identified	-	27 of 32
+Validation	BUSCO complete (%, Hypocreales)	-	99.6
+Validation	Merqury QV	-	54.10
+Validation	Merqury k-mer completeness (%)	-	99.46

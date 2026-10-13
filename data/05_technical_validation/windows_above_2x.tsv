@@ -1,0 +1,9 @@
+chrom	start	end	kb	max_rel	mean_rel	mean_rel_q20	annotation
+Chr05	4750000	4819956	69	20.0	13.9	2.5	rDNA array: 8 tandem 7,877-bp units (5.8S/28S/ITS motifs); ~124 depth-equivalent units
+Chr05	4550000	4560000	10	12.9	12.9	12.9	4.7-kb mitochondrial insertion (97.2% id to NC_017930.1:5866-10503)
+Chr12	570000	590000	20	2.5	2.5	2.4	collapsed 2-copy window (uniquely mapping)
+Chr13	150000	260000	110	2.3	2.2	2.2	part of collapsed Chr13 0-0.49 Mb contig (uniquely mapping, 1.5-2.3x)
+Chr13	280000	300000	20	2.1	2.1	2.1	part of collapsed Chr13 0-0.49 Mb contig (uniquely mapping, 1.5-2.3x)
+Chr13	90000	100000	10	2.0	2.0	2.0	part of collapsed Chr13 0-0.49 Mb contig (uniquely mapping, 1.5-2.3x)
+Chr13	370000	380000	10	2.0	2.0	2.0	part of collapsed Chr13 0-0.49 Mb contig (uniquely mapping, 1.5-2.3x)
+Chr15	180000	190000	10	2.0	2.0	2.0	collapsed 2-copy window (uniquely mapping)

@@ -1,76 +1,46 @@
-# *Fusarium oxysporum* MRL8996 — Genome assembly & structural effectorome
+# *Fusarium oxysporum* MRL8996 — chromosome-level genome assembly
 
-Command-line strings, custom scripts, and pipelines used for the chromosome-level
-genome assembly of *Fusarium oxysporum* strain MRL8996 and the structural
-characterisation of its predicted effectorome.
+Code and annotation files accompanying the data descriptor
+"A near-complete genome assembly of the *Fusarium oxysporum* keratitis isolate MRL8996".
 
-## Overview
+The genome assembly and raw reads are deposited at NCBI (BioProject `PRJNA554890`):
 
-- **Assembly:** Oxford Nanopore long reads (Flye) + Hi-C scaffolding (Juicer / 3D-DNA)
-- **Total length:** `52.32` Mb
-- **Chromosome-scale pseudomolecules:** `16`
-- **Final effectorome:** `513` proteins (SignalP ∩ EffectorP, transmembrane-filtered)
-- **Structural analyses:** all-vs-all TM-align + DALI, Louvain structural families, AMAPEC antimicrobial-activity prediction
+- Genome assembly: GenBank `GCA_009746015.2`
+- Nanopore reads: SRA `SRR39391754`
+- Hi-C reads: SRA `SRR39391753`
+
+A copy of the assembly FASTA is included here because every coordinate in the files below refers to it.
 
 ## Repository structure
 
 ```
-MRL8996_Genome_Project/
-├── 01_Genome_Assembly/
-│   ├── 01_flye_assembly.sh            # ONT de novo assembly (Flye)
-│   ├── 02_hic_scaffolding_juicer.sh   # Hi-C scaffolding (Juicer + 3D-DNA)
-│   └── 03_edta_te_annotation.sh       # transposable element annotation (EDTA)
-├── 02_Effector_Prediction/
-│   ├── 01_secretome_pipeline.sh       # SignalP 6 secretome + mature-seq extraction
-│   ├── 02_effectorp_run.sh            # EffectorP 3.0 + intersect + DeepTMHMM
-│   ├── 03_parse_effectors.py          # drop TM-containing -> final effectorome
-│   ├── 04_structure_prediction.sh     # ColabFold/ESMFold (MATURE seqs) -> PDBs
-│   └── 05_amapec_prediction.sh        # AMAPEC antimicrobial-activity prediction
-├── 03_Structural_Network/
-│   ├── 00_dali_allvsall.sh            # DaliLite v5 all-vs-all -> 'ordered' matrix
-│   ├── 01_network_construction.R      # matrix -> igraph -> Louvain families -> figure
-│   ├── 02_network_visualization.py    # Python render + Cytoscape GraphML export
-│   └── 03_family_representatives.R    # per-family medoid + PyMOL render script
-└── 04_Heatmap_Analysis/
-    ├── 01_expression_matrix_prep.sh   # TM-align all-vs-all similarity matrix
-    └── 02_plot_heatmap.R              # ComplexHeatmap + AMAPEC annotation
+01_Genome_Assembly/
+  01_flye_assembly.sh              ONT de novo assembly (Flye)
+  02_hic_scaffolding_juicer.sh     Hi-C scaffolding (Juicer + 3D-DNA)
+  03_edta_te_annotation.sh         transposable-element annotation (EDTA)
+02_Figure1_and_centromeres/
+  15_circos_with_centromeres.R     Figure 1B (genome-feature circos plot)
+  16_label_hic_panelA.py           Figure 1A (Hi-C contact map labels)
+  17_centromeres_gc_criterion.py   candidate centromeric regions (StainedGlass + GC minima)
+data/
+  01_assembly_and_annotation/      assembly FASTA, AGP, gaps, lifted-over gene annotation (GFF3, BED),
+                                   proteome, assembly statistics, per-chromosome content, 20-kb feature tracks
+  02_repeats/                      EDTA TE annotation, TE library, DeepTE classification, repeat BED files,
+                                   repeat content by core/accessory compartment
+  03_centromeres_telomeres/        candidate centromeric regions and supporting signals; telomere calls (Tapestry)
+  04_biosynthetic_gene_clusters/   antiSMASH region summary and region files
+  05_technical_validation/         BUSCO, Merqury and QUAST summaries, read depth, auN, Hi-C contact matrix (.hic)
 ```
 
-## Pipeline notes (important for reproducibility)
-
-- **Mature sequences for structure prediction.** AMAPEC explicitly requires structures
-  predicted from mature sequences; folding with the signal peptide distorts geometry
-  and biases the antimicrobial-activity prediction.
-- **AMAPEC output path.** AMAPEC v1.0 writes `AMAPEC_Effectorome/prediction.csv`,
-  but `02_plot_heatmap.R` currently reads `AMAPEC_Effectorome/results/prediction.csv`.
-  Reconcile the two before plotting.
-- **TM-score length bias.** `Max_TM_Score` is normalised by the shorter chain, which
-  inflates similarity for size-mismatched pairs — relevant when interpreting edges
-  between very different-length effectors.
-- **DALI is native all-vs-all** (`dali.pl --matrix`), not snakedali (query-vs-database).
+Tables are tab-separated; large files are gzip-compressed. Annotations are GFF3 or BED on the chromosome-level coordinates.
 
 ## Software
 
-Flye, BWA, samtools, Juicer, 3D-DNA, Juicebox; EDTA (via Docker); SignalP 6,
-EffectorP 3.0, DeepTMHMM (via BioLib); ColabFold / ESMFold; DaliLite v5, TM-align;
-AMAPEC; R (igraph, ggraph, ComplexHeatmap, circlize, tidyverse), Python
-(networkx, matplotlib, pandas).
+Flye, BWA, samtools, Juicer, 3D-DNA, Juicebox, TGS-GapCloser, liftoff, EDTA, RepeatMasker, DeepTE,
+antiSMASH, StainedGlass, Tapestry, BUSCO, Merqury, QUAST; R (circlize). Versions and non-default
+parameters are given in the Methods of the article; default parameters were used otherwise.
 
 ## Citation
 
-> Doddi, A.; Puebla Planas, G. *et al.* (2026). A near-complete genome assembly of *Fusarium oxysporum* keratitis  isolate MRL8996.
-
-Tool citations: Flye (Kolmogorov et al. 2019); Juicer (Durand et al. 2016);
-3D-DNA (Dudchenko et al. 2017); EDTA (Ou et al. 2019); SignalP 6.0 (Teufel et al. 2022); EffectorP 3.0
-(Sperschneider & Dodds 2022); DeepTMHMM (Hallgren et al. 2022); ColabFold
-(Mirdita et al. 2022); DALI (Holm 2022); TM-align (Zhang & Skolnick 2005);
-AMAPEC (Mesny & Thomma 2024, doi:10.1101/2024.01.04.574150).
-
-## Data availability
-
-Final assembly: NCBI GenBank `GCA_009746015.2`. Raw ONT and Hi-C reads: SRX34109262 & SRX34109263
-BioProject `PRJNA554890`. Large sequence files are archived at NCBI, not in this repo.
-
-## 05_Revision_2026 - revision
-
-`05_Revision_2026/Data_tables/` holds the data tables as Excel files (Data File 1-12 and the structural network table), and `05_Revision_2026/` the scripts that produce the figures updated during the revision (Figures 1, 4 and 5 and Supplementary Images 1 and 4). See `05_Revision_2026/README.md`.
+Doddi, A., Puebla Planas, G., López-Berges, M. S. & Di Pietro, A. (2026). A near-complete genome assembly of the
+*Fusarium oxysporum* keratitis isolate MRL8996.

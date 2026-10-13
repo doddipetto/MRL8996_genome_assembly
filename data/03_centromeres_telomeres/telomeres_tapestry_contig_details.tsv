@@ -1,0 +1,17 @@
+Contig	Length	GC%	MedianReadDepth	StartTelomeres	EndTelomeres	StartMeanReadOverhangBases	EndMeanReadOverhangBases	UniqueBases	Unique%	Ploidys
+PGA_scaffold_1__1_contigs__length_6391895	6391895	48.3	46.8	10	21	27	1048	6351214	99	2:1.00
+PGA_scaffold_2__1_contigs__length_5711344	5711344	47.9	47.8	20	21	36	2829	5526193	97	2:1.00
+PGA_scaffold_4__1_contigs__length_5198988	5198988	48.0	47.2	0	21	None	973	4670582	90	2:1.00
+PGA_scaffold_3__1_contigs__length_5049228	5049228	47.9	47.5	21	21	265	602	4961654	98	0:0.04,2:0.96
+PGA_scaffold_5__1_contigs__length_4819956	4819956	48.1	47.8	21	1	79	8309	4690638	97	2:0.92,3:0.04,4:0.04
+PGA_scaffold_6__1_contigs__length_4141269	4141269	47.8	48.6	21	21	81	410	4057528	98	2:1.00
+PGA_scaffold_7__1_contigs__length_3398276	3398276	48.0	48.9	20	21	894	1319	3332999	98	2:1.00
+PGA_scaffold_8__1_contigs__length_3051641	3051641	47.3	46.3	21	21	443	580	2935753	96	1:0.06,2:0.94
+PGA_scaffold_9__1_contigs__length_2788805	2788805	47.1	49.5	21	21	746	34	2628843	94	2:1.00
+PGA_scaffold_10__1_contigs__length_2563387	2563387	46.3	46.0	21	21	543	2802	2438426	95	2:1.00
+PGA_scaffold_11__1_contigs__length_2479329	2479329	46.3	47.8	21	21	550	3595	2336782	94	1:0.08,2:0.92
+PGA_scaffold_12__2_contigs__length_1818718	1818718	46.2	48.0	21	1	783	17731	971944	53	1:0.10,2:0.80,3:0.10
+PGA_scaffold_13__2_contigs__length_1616105	1616105	47.2	50.4	29	0	20008	9685	856179	53	2:0.78,4:0.22
+PGA_scaffold_14__1_contigs__length_1245670	1245670	48.1	44.2	21	21	436	1844	469454	38	1:0.14,2:0.86
+PGA_scaffold_15__3_contigs__length_1176336	1176336	47.2	47.3	21	1	54	19418	365238	31	2:1.00
+PGA_scaffold_16__1_contigs__length_871515	871515	47.5	47.6	21	21	695	2015	369748	42	1:0.20,2:0.80

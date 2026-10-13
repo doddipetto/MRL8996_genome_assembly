@@ -1,0 +1,33 @@
+Class and superfamily	Core (kb)	Core (%)	Acc. (kb)	Acc. (%)	Genome (kb)	Genome (%)	Acc. : core
+   LTR / Gypsy	880	1.93	359	5.34	1,240	2.37	2.8
+   LINE / Tad1	100	0.22	270	4.02	370	0.71	18.3
+   LTR / Copia	50	0.11	156	2.32	206	0.39	21.2
+   LTR, superfamily undet.	71	0.16	96	1.42	167	0.32	9.1
+   DIRS	30	0.06	33	0.50	63	0.12	7.7
+   SINE / Foxy	12	0.03	19	0.28	31	0.06	10.6
+   LINE / CRE	39	0.08	17	0.25	55	0.11	2.9
+   SINE / tRNA-derived	19	0.04	15	0.23	35	0.07	5.3
+   Retro, order undet.	51	0.11	14	0.21	65	0.12	1.9
+   LINE / L1	25	0.06	10	0.15	35	0.07	2.6
+   Non-LTR, order undet.	0	0.00	7	0.10	7	0.01	-
+   SINE, family undet.	2	0.00	0	0.00	2	0.00	0.00
+   SINE / 7SL-derived	<1	0.00	0	0.00	<1	0.00	0.00
+Class I retrotransposons, all	1,265	2.77	994	14.77	2,258	4.32	5.3
+   TIR / Tc1-Mariner	104	0.23	317	4.72	422	0.81	20.6
+   TIR / PIF-Harbinger	58	0.13	168	2.50	226	0.43	19.7
+   TIR / hAT	57	0.13	123	1.83	180	0.34	14.5
+   TIR / Mutator	163	0.36	114	1.70	277	0.53	4.8
+   TIR / CACTA	194	0.43	87	1.30	282	0.54	3.0
+   TIR, superfamily undet.	13	0.03	58	0.86	71	0.14	29.0
+   MITE, superfamily undet.	34	0.08	28	0.42	63	0.12	5.5
+   TIR / PiggyBac	4	0.01	13	0.19	17	0.03	22.4
+Class II DNA transposons, all	628	1.38	906	13.46	1,534	2.93	9.8
+   Helitron	450	0.99	78	1.15	528	1.01	1.2
+Class III Helitrons, all	450	0.99	78	1.15	528	1.01	1.2
+   Unclassified	373	0.82	269	3.99	641	1.23	4.9
+   Crypton	57	0.12	103	1.54	160	0.31	12.3
+   Tac (Fusarium-specific)	4	0.01	5	0.07	9	0.02	8.0
+   Marsu (Fusarium-specific)	5	0.01	2	0.03	7	0.01	3.1
+   tRNA-related repeat	1	0.00	0	0.00	1	0.00	0.00
+Other / unclassified, all	439	0.96	379	5.63	818	1.56	5.9
+All repeats, total (non-redundant)	2,746	6.02	2,349	34.92	5,095	9.74	5.8
