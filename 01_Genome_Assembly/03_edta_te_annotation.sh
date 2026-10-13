@@ -31,9 +31,4 @@ EDTA.pl \
 # NOTE: EDTA's default neutral rate (--u 1.3e-8) is rice-derived. If you report LTR
 #   insertion AGES, set a Fusarium-appropriate rate via --u, or the ages are mis-dated.
 
-# ---- downstream: effector <-> TE co-localisation (Fusarium LS compartments) ----
-# F. oxysporum effectors concentrate in TE-rich lineage-specific regions, so the
-# natural link to 02_Effector_Prediction is a coordinate intersect:
-# bedtools intersect -a effectors.bed \
-#   -b "${GENOME}.mod.EDTA.TEanno.gff3" -wa -wb > effectors_in_TE.tsv
 echo "EDTA done -> ${GENOME}.mod.EDTA.TEanno.gff3 / .TElib.fa / .sum"
